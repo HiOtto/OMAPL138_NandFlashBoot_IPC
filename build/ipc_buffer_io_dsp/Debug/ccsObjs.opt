@@ -1,0 +1,1 @@
+"./myboot.obj" "./main_dsp.obj" "../ipc_buffer_io.cmd" -l"libc.a" -lipclite.lib -ldrivers.lib -lutils.lib -lplatform.lib -lsystem_config.lib 

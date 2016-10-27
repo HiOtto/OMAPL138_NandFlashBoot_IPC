@@ -1,0 +1,445 @@
+******************************************************************************
+               TMS320C6x Linker PC v7.4.4                      
+******************************************************************************
+>> Linked Thu Oct 27 20:11:45 2016
+
+OUTPUT FILE NAME:   <ipc_buffer_io.out>
+ENTRY POINT SYMBOL: "_my_boot"  address: 11800000
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  L2                    11800000   00040000  00000040  0003ffc0  RWIX
+  L1P                   11e00000   00008000  00000000  00008000  RWIX
+  L1D                   11f00000   00008000  00000000  00008000  RWIX
+  IPC_ARM               80000000   00000010  00000010  00000000  RWIX
+  IPC_DSP               80000010   00000010  00000010  00000000  RWIX
+  shared_ram            80000020   0001ffdf  00000000  0001ffdf  RWIX
+  DDR2                  c4000000   04000000  00006a04  03ff95fc  RWIX
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+11800000    11800000    00000040   00000040    r-x
+  11800000    11800000    00000040   00000040    r-x my_boot_sect
+80000000    80000000    00000020   00000000    rw-
+  80000000    80000000    00000010   00000000    rw- ipc_arm
+  80000010    80000010    00000010   00000000    rw- ipc_dsp
+c4000000    c4000000    00004540   00004540    r-x
+  c4000000    c4000000    00004540   00004540    r-x .text
+c4004540    c4004540    00002374   00000000    rw-
+  c4004540    c4004540    00001000   00000000    rw- .stack
+  c4005540    c4005540    00001000   00000000    rw- .sysmem
+  c4006540    c4006540    00000374   00000000    rw- .far
+c40068b4    c40068b4    00000024   00000024    r--
+  c40068b4    c40068b4    00000024   00000024    r-- .const
+c40068d8    c40068d8    00000020   00000020    rw-
+  c40068d8    c40068d8    00000020   00000020    rw- .fardata
+c40068f8    c40068f8    00000010   00000010    r--
+  c40068f8    c40068f8    00000010   00000010    r-- .switch
+c4006908    c4006908    00000008   00000000    rw-
+  c4006908    c4006908    00000008   00000000    rw- .bss
+c4006910    c4006910    00000074   00000074    r--
+  c4006910    c4006910    00000074   00000074    r-- .cinit
+c4006c00    c4006c00    00000080   00000080    r-x
+  c4006c00    c4006c00    00000080   00000080    r-x .text:_c_int00
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.init_array 
+*          0    c4000000    00000000     UNINITIALIZED
+
+my_boot_sect 
+*          0    11800000    00000040     
+                  11800000    00000020     myboot.obj (my_boot_sect)
+                  11800020    00000020     rts6740_elf.lib : boot.obj ($Tramp$S$$_c_int00)
+
+ipc_arm    0    80000000    00000010     UNINITIALIZED
+                  80000000    00000010     main_dsp.obj (ipc_arm)
+
+ipc_dsp    0    80000010    00000010     UNINITIALIZED
+                  80000010    00000010     main_dsp.obj (ipc_dsp)
+
+.text      0    c4000000    00004540     
+                  c4000000    00001aa0     system_config.lib : interrupt.obj (.text:retain)
+                  c4001aa0    00000c00     ipclite.lib : notify.obj (.text)
+                  c40026a0    000005e0     system_config.lib : interrupt.obj (.text)
+                  c4002c80    00000580     drivers.lib : gpio.obj (.text)
+                  c4003200    000002a0     main_dsp.obj (.text)
+                  c40034a0    00000180     rts6740_elf.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  c4003620    00000180                     : memory.obj (.text:malloc)
+                  c40037a0    00000060                     : cpp_init.obj (.text:__TI_cpp_init)
+                  c4003800    00000200     system_config.lib : intvecs.obj (.text)
+                  c4003a00    00000140     drivers.lib : psc.obj (.text)
+                  c4003b40    00000140     ipclite.lib : ipc.obj (.text)
+                  c4003c80    00000120                 : notify_driver_OMAPL138.obj (.text)
+                  c4003da0    00000100     rts6740_elf.lib : autoinit.obj (.text:_auto_init_elf)
+                  c4003ea0    00000100                     : cpy_tbl.obj (.text:copy_in)
+                  c4003fa0    000000e0                     : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  c4004080    000000c0                     : exit.obj (.text:exit)
+                  c4004140    000000c0                     : tls.obj (.text:tls:init:__TI_tls_init)
+                  c4004200    000000a0                     : memory.obj (.text:_minit)
+                  c40042a0    000000a0                     : memcpy64.obj (.text:memcpy)
+                  c4004340    000000a0                     : memory.obj (.text:minsert)
+                  c40043e0    000000a0                     : memory.obj (.text:mremove)
+                  c4004480    00000040                     : args_main.obj (.text:_args_main)
+                  c40044c0    00000020                     : _lock.obj (.text:_nop)
+                  c40044e0    00000020                     : exit.obj (.text:abort)
+                  c4004500    00000020                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  c4004520    00000020                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+
+.stack     0    c4004540    00001000     UNINITIALIZED
+                  c4004540    00000008     rts6740_elf.lib : boot.obj (.stack)
+                  c4004548    00000ff8     --HOLE--
+
+.sysmem    0    c4005540    00001000     UNINITIALIZED
+                  c4005540    00000008     rts6740_elf.lib : memory.obj (.sysmem)
+                  c4005548    00000ff8     --HOLE--
+
+.far       0    c4006540    00000374     UNINITIALIZED
+                  c4006540    00000240     system_config.lib : interrupt.obj (.far)
+                  c4006780    00000128     ipclite.lib : notify.obj (.far)
+                  c40068a8    0000000c                 : ipc.obj (.far)
+
+.const     0    c40068b4    00000024     
+                  c40068b4    00000014     main_dsp.obj (.const)
+                  c40068c8    00000010     main_dsp.obj (.const:.string)
+
+.fardata   0    c40068d8    00000020     
+                  c40068d8    0000000c     rts6740_elf.lib : exit.obj (.fardata)
+                  c40068e4    0000000c                     : memory.obj (.fardata)
+                  c40068f0    00000008                     : _lock.obj (.fardata)
+
+.switch    0    c40068f8    00000010     
+                  c40068f8    00000010     drivers.lib : gpio.obj (.switch:GPIOIntTypeSet)
+
+.neardata 
+*          0    c4006908    00000000     UNINITIALIZED
+
+.rodata    0    c4006908    00000000     UNINITIALIZED
+
+.bss       0    c4006908    00000008     UNINITIALIZED
+                  c4006908    00000008     main_dsp.obj (.bss)
+
+.cinit     0    c4006910    00000074     
+                  c4006910    00000020     (.cinit..fardata.load) [load image, compression = rle]
+                  c4006930    0000000c     (__TI_handler_table)
+                  c400693c    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  c4006944    00000008     (.cinit..far.load) [load image, compression = zero_init]
+                  c400694c    00000008     (.cinit.ipc_arm.load) [load image, compression = zero_init]
+                  c4006954    00000008     (.cinit.ipc_dsp.load) [load image, compression = zero_init]
+                  c400695c    00000028     (__TI_cinit_table)
+
+.text:_c_int00 
+*          0    c4006c00    00000080     
+                  c4006c00    00000080     rts6740_elf.lib : boot.obj (.text:_c_int00)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ c400695c records: 5, size/record: 8, table size: 40
+	.fardata: load addr=c4006910, load size=00000020 bytes, run addr=c40068d8, run size=00000020 bytes, compression=rle
+	.bss: load addr=c400693c, load size=00000008 bytes, run addr=c4006908, run size=00000008 bytes, compression=zero_init
+	.far: load addr=c4006944, load size=00000008 bytes, run addr=c4006540, run size=00000374 bytes, compression=zero_init
+	ipc_arm: load addr=c400694c, load size=00000008 bytes, run addr=80000000, run size=00000010 bytes, compression=zero_init
+	ipc_dsp: load addr=c4006954, load size=00000008 bytes, run addr=80000010, run size=00000010 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ c4006930 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
+
+
+FAR CALL TRAMPOLINES
+
+callee name               trampoline name
+   callee addr  tramp addr   call addr  call info
+--------------  -----------  ---------  ----------------
+$.text:_c_int00:rts6740_elf.lib<boot.obj>$0x0  $Tramp$S$$_c_int00
+   c4006c00     11800020     11800000   myboot.obj (my_boot_sect)
+
+[1 trampolines]
+[1 trampoline calls]
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+c40044e0   C$$EXIT
+c4003474   Delay
+c4002af8   ExcCombineAdd
+c4002b40   ExcCombineRemove
+c4002ad8   ExcGlobalEnable
+c4003124   GPIOBankIntDisable
+c40030f4   GPIOBankIntEnable
+c4003444   GPIOBankPinInit
+c4003428   GPIOBankPinMuxSet
+c4003150   GPIOBankPinsWrite
+c4002d18   GPIODirModeGet
+c4002c80   GPIODirModeSet
+c4002fc4   GPIOIntTypeGet
+c4002e58   GPIOIntTypeSet
+c40030ac   GPIOPinIntClear
+c400304c   GPIOPinIntStatus
+c4002df8   GPIOPinRead
+c4002d78   GPIOPinWrite
+c4003354   IPCInit
+c4003b40   IPC_init
+c4003c60   IPC_intRegister
+c40026a0   IntDSPINTCInit
+c4002a50   IntDisable
+c4002a20   IntEnable
+c4002818   IntEventClear
+c4002954   IntEventCombineAdd
+c4002850   IntEventCombineInit
+c40029f8   IntEventCombineRegister
+c40029a8   IntEventCombineRemove
+c400275c   IntEventMap
+c40027e4   IntEventSet
+c4002aac   IntGlobalDisable
+c4002a98   IntGlobalEnable
+c4002ac0   IntGlobalRestore
+c4002710   IntRegister
+c4002a84   IntReset
+c4002734   IntUnRegister
+c4001b10   Notify_disable
+c4001d38   Notify_disableEvent
+c4001d94   Notify_enableEvent
+c4001dec   Notify_registerEvent
+c4001bd8   Notify_restore
+c40020a8   Notify_sendEvent
+c4001aa0   Notify_start
+c4001f40   Notify_unregisterEvent
+c4001cac   Notify_waitEvent
+c400340c   PSCInit
+c4003a00   PSCModuleControl
+c400695c   __TI_CINIT_Base
+c4006984   __TI_CINIT_Limit
+c4006930   __TI_Handler_Table_Base
+c400693c   __TI_Handler_Table_Limit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+c4005540   __TI_STACK_END
+00001000   __TI_STACK_SIZE
+c4006908   __TI_STATIC_BASE
+00001000   __TI_SYSMEM_SIZE
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+00000001   __TI_args_main
+c40037a0   __TI_cpp_init
+c4004500   __TI_decompress_none
+c4004520   __TI_decompress_rle24
+c40068e0   __TI_enable_exit_profile_output
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+c4004140   __TI_tls_init
+c4003fa0   __TI_zero_init
+ffffffff   __binit__
+ffffffff   __c_args__
+c4004480   _args_main
+c4003da0   _auto_init_elf
+c4000ff8   _c674x_mask_int10_isr
+c40011c0   _c674x_mask_int11_isr
+c4001384   _c674x_mask_int12_isr
+c4001548   _c674x_mask_int13_isr
+c4001710   _c674x_mask_int14_isr
+c40018d8   _c674x_mask_int15_isr
+c4000550   _c674x_mask_int4_isr
+c4000718   _c674x_mask_int5_isr
+c40008e0   _c674x_mask_int6_isr
+c4000aa4   _c674x_mask_int7_isr
+c4000c68   _c674x_mask_int8_isr
+c4000e30   _c674x_mask_int9_isr
+c4000000   _c674x_nmi_isr
+c40001c4   _c674x_rsvd_int2_isr
+c4000388   _c674x_rsvd_int3_isr
+c4006c00   _c_int00
+c40068d8   _cleanup_ptr
+c40068dc   _dtors_ptr
+c4003800   _intcVectorTable
+c40068f0   _lock
+c4004200   _minit
+11800000   _my_boot
+c40044c0   _nop
+c4004540   _stack
+c4005540   _sys_memory
+c40068f4   _unlock
+c40044e0   abort
+ffffffff   binit
+c4003200   cbFxnEvent
+c4003ea0   copy_in
+c4006908   evtRcvd
+c4004080   exit
+c40033c8   iAssert
+80000000   ipcPvMemArm
+80000010   ipcPvMemDsp
+c4003d5c   ipc_CheckIntStatus
+c4003d70   ipc_CheckIpcIntStatus
+c4003ce8   ipc_ClearIpcInt
+c40021cc   ipc_InitSyncRemote
+c4003cd4   ipc_NotifyIntDisable
+c4003cc4   ipc_NotifyIntEnable
+c40024c0   ipc_NotifyIntInfo
+c4003c80   ipc_NotifyIsr
+c40022f0   ipc_NotifyIsrAckEvent
+c4002284   ipc_NotifySendInterrupt
+c40024e4   ipc_NotifySetup
+c4002214   ipc_NotifySyncRemote
+c4003ca0   ipc_RegisterInt
+c4003d24   ipc_SetIpcInt
+c40021b4   ipc_quickWait
+c4003234   main
+c4003620   malloc
+c40042a0   memcpy
+c400690c   myPayload
+c40033e4   wait_event
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000001   __TI_args_main
+00001000   __TI_STACK_SIZE
+00001000   __TI_SYSMEM_SIZE
+11800000   _my_boot
+80000000   ipcPvMemArm
+80000010   ipcPvMemDsp
+c4000000   _c674x_nmi_isr
+c40001c4   _c674x_rsvd_int2_isr
+c4000388   _c674x_rsvd_int3_isr
+c4000550   _c674x_mask_int4_isr
+c4000718   _c674x_mask_int5_isr
+c40008e0   _c674x_mask_int6_isr
+c4000aa4   _c674x_mask_int7_isr
+c4000c68   _c674x_mask_int8_isr
+c4000e30   _c674x_mask_int9_isr
+c4000ff8   _c674x_mask_int10_isr
+c40011c0   _c674x_mask_int11_isr
+c4001384   _c674x_mask_int12_isr
+c4001548   _c674x_mask_int13_isr
+c4001710   _c674x_mask_int14_isr
+c40018d8   _c674x_mask_int15_isr
+c4001aa0   Notify_start
+c4001b10   Notify_disable
+c4001bd8   Notify_restore
+c4001cac   Notify_waitEvent
+c4001d38   Notify_disableEvent
+c4001d94   Notify_enableEvent
+c4001dec   Notify_registerEvent
+c4001f40   Notify_unregisterEvent
+c40020a8   Notify_sendEvent
+c40021b4   ipc_quickWait
+c40021cc   ipc_InitSyncRemote
+c4002214   ipc_NotifySyncRemote
+c4002284   ipc_NotifySendInterrupt
+c40022f0   ipc_NotifyIsrAckEvent
+c40024c0   ipc_NotifyIntInfo
+c40024e4   ipc_NotifySetup
+c40026a0   IntDSPINTCInit
+c4002710   IntRegister
+c4002734   IntUnRegister
+c400275c   IntEventMap
+c40027e4   IntEventSet
+c4002818   IntEventClear
+c4002850   IntEventCombineInit
+c4002954   IntEventCombineAdd
+c40029a8   IntEventCombineRemove
+c40029f8   IntEventCombineRegister
+c4002a20   IntEnable
+c4002a50   IntDisable
+c4002a84   IntReset
+c4002a98   IntGlobalEnable
+c4002aac   IntGlobalDisable
+c4002ac0   IntGlobalRestore
+c4002ad8   ExcGlobalEnable
+c4002af8   ExcCombineAdd
+c4002b40   ExcCombineRemove
+c4002c80   GPIODirModeSet
+c4002d18   GPIODirModeGet
+c4002d78   GPIOPinWrite
+c4002df8   GPIOPinRead
+c4002e58   GPIOIntTypeSet
+c4002fc4   GPIOIntTypeGet
+c400304c   GPIOPinIntStatus
+c40030ac   GPIOPinIntClear
+c40030f4   GPIOBankIntEnable
+c4003124   GPIOBankIntDisable
+c4003150   GPIOBankPinsWrite
+c4003200   cbFxnEvent
+c4003234   main
+c4003354   IPCInit
+c40033c8   iAssert
+c40033e4   wait_event
+c400340c   PSCInit
+c4003428   GPIOBankPinMuxSet
+c4003444   GPIOBankPinInit
+c4003474   Delay
+c4003620   malloc
+c40037a0   __TI_cpp_init
+c4003800   _intcVectorTable
+c4003a00   PSCModuleControl
+c4003b40   IPC_init
+c4003c60   IPC_intRegister
+c4003c80   ipc_NotifyIsr
+c4003ca0   ipc_RegisterInt
+c4003cc4   ipc_NotifyIntEnable
+c4003cd4   ipc_NotifyIntDisable
+c4003ce8   ipc_ClearIpcInt
+c4003d24   ipc_SetIpcInt
+c4003d5c   ipc_CheckIntStatus
+c4003d70   ipc_CheckIpcIntStatus
+c4003da0   _auto_init_elf
+c4003ea0   copy_in
+c4003fa0   __TI_zero_init
+c4004080   exit
+c4004140   __TI_tls_init
+c4004200   _minit
+c40042a0   memcpy
+c4004480   _args_main
+c40044c0   _nop
+c40044e0   C$$EXIT
+c40044e0   abort
+c4004500   __TI_decompress_none
+c4004520   __TI_decompress_rle24
+c4004540   _stack
+c4005540   __TI_STACK_END
+c4005540   _sys_memory
+c40068d8   _cleanup_ptr
+c40068dc   _dtors_ptr
+c40068e0   __TI_enable_exit_profile_output
+c40068f0   _lock
+c40068f4   _unlock
+c4006908   __TI_STATIC_BASE
+c4006908   evtRcvd
+c400690c   myPayload
+c4006930   __TI_Handler_Table_Base
+c400693c   __TI_Handler_Table_Limit
+c400695c   __TI_CINIT_Base
+c4006984   __TI_CINIT_Limit
+c4006c00   _c_int00
+ffffffff   __TI_pprof_out_hndl
+ffffffff   __TI_prof_data_size
+ffffffff   __TI_prof_data_start
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    __TI_INITARRAY_Base
+UNDEFED    __TI_INITARRAY_Limit
+UNDEFED    __TI_TLS_INIT_Base
+UNDEFED    __TI_TLS_INIT_Limit
+
+[129 symbols]

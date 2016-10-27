@@ -1,0 +1,651 @@
+******************************************************************************
+                  TI ARM Linker PC v5.1.1                      
+******************************************************************************
+>> Linked Thu Oct 27 20:34:37 2016
+
+OUTPUT FILE NAME:   <ipc_buffer_io.out>
+ENTRY POINT SYMBOL: "Entry"  address: c1080000
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  IPC_ARM               80000000   00000010  00000010  00000000  RWIX
+  IPC_DSP               80000010   00000010  00000010  00000000  RWIX
+  shared_ram            80000020   0001ffdf  00000000  0001ffdf  RWIX
+  DDR_MEM               c1080000   02f7ffff  0001203c  02f6dfc3  RWIX
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+80000000    80000000    00000020   00000000    rw-
+  80000000    80000000    00000010   00000000    rw- ipc_arm
+  80000010    80000010    00000010   00000000    rw- ipc_dsp
+c1080000    c1080000    0000009c   0000009c    r-x
+  c1080000    c1080000    0000009c   0000009c    r-x .init
+c108009c    c108009c    00008000   00000000    rw-
+  c108009c    c108009c    00008000   00000000    rw- .stack
+c108809c    c108809c    0000770c   0000770c    r-x
+  c108809c    c108809c    0000770c   0000770c    r-x .text
+c108f7a8    c108f7a8    00002684   00000000    rw-
+  c108f7a8    c108f7a8    00002000   00000000    rw- .sysmem
+  c10917a8    c10917a8    00000494   00000000    rw- .bss
+  c1091c3c    c1091c3c    000001f0   00000000    rw- .data
+c1091e2c    c1091e2c    00000150   00000150    r--
+  c1091e2c    c1091e2c    00000150   00000150    r-- .const
+c1091f80    c1091f80    000000c0   000000c0    r--
+  c1091f80    c1091f80    000000c0   000000c0    r-- .cinit
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+ipc_arm    0    80000000    00000010     UNINITIALIZED
+                  80000000    00000010     main_arm.obj (ipc_arm)
+
+ipc_dsp    0    80000010    00000010     UNINITIALIZED
+                  80000010    00000010     main_arm.obj (ipc_dsp)
+
+.init      0    c1080000    0000009c     
+                  c1080000    00000094     system_config.lib : init.obj (.text)
+                  c1080094    00000008     rtsv5_A_le_eabi.lib : auto_init.obj (.tramp.__TI_auto_init.1)
+
+.stack     0    c108009c    00008000     UNINITIALIZED
+                  c108009c    00008000     --HOLE--
+
+.text      0    c108809c    0000770c     
+                  c108809c    000016c4     rtsv5_A_le_eabi.lib : _printfi.obj (.text)
+                  c1089760    00001664     main_arm.obj (.text)
+                  c108adc4    00000a48     ipclite.lib : notify.obj (.text)
+                  c108b80c    000006bc     drivers.lib : gpio.obj (.text)
+                  c108bec8    00000628     rtsv5_A_le_eabi.lib : memory.obj (.text)
+                  c108c4f0    0000054c                         : lowlev.obj (.text)
+                  c108ca3c    000004cc                         : trgdrv.obj (.text)
+                  c108cf08    000003b8     system_config.lib : interrupt.obj (.text)
+                  c108d2c0    000002e0     rtsv5_A_le_eabi.lib : fopen.obj (.text)
+                  c108d5a0    000002b8                         : ull_div32.obj (.text)
+                  c108d858    00000214                         : fd_add32.obj (.text)
+                  c108da6c    000001d4                         : fputs.obj (.text)
+                  c108dc40    00000190                         : fd_div32.obj (.text)
+                  c108ddd0    00000180                         : memcpy32.obj (.text)
+                  c108df50    00000154     drivers.lib : psc.obj (.text)
+                  c108e0a4    00000154     rtsv5_A_le_eabi.lib : setvbuf.obj (.text)
+                  c108e1f8    00000138     ipclite.lib : ipc.obj (.text)
+                  c108e330    0000012c     rtsv5_A_le_eabi.lib : fflush.obj (.text)
+                  c108e45c    00000128                         : fd_mul32.obj (.text)
+                  c108e584    00000118     ipclite.lib : notify_driver_OMAPL138.obj (.text)
+                  c108e69c    00000118     rtsv5_A_le_eabi.lib : _io_perm.obj (.text)
+                  c108e7b4    00000118                         : i_div32.obj (.text)
+                  c108e8cc    00000110                         : fputc.obj (.text)
+                  c108e9dc    000000fc                         : fclose.obj (.text)
+                  c108ead8    000000f4                         : u_div32.obj (.text)
+                  c108ebcc    000000d4                         : auto_init.obj (.text)
+                  c108eca0    000000d0                         : fd_cmp32.obj (.text:__aeabi_cdcmple)
+                  c108ed70    000000d0                         : fd_cmp32.obj (.text:__aeabi_cdrcmple)
+                  c108ee40    000000b0                         : memset32.obj (.text)
+                  c108eef0    000000b0     system_config.lib : startup.obj (.text)
+                  c108efa0    000000a8     rtsv5_A_le_eabi.lib : fseek.obj (.text)
+                  c108f048    000000a8                         : trgmsg.obj (.text)
+                  c108f0f0    000000a4                         : printf.obj (.text)
+                  c108f194    00000098                         : copy_decompress_rle.obj (.text)
+                  c108f22c    00000090                         : xdtest.obj (.text)
+                  c108f2bc    00000084                         : atoi.obj (.text)
+                  c108f340    00000084                         : cpy_tbl.obj (.text)
+                  c108f3c4    00000080                         : ltoa.obj (.text)
+                  c108f444    0000007c     system_config.lib : exceptionhandler.obj (.text)
+                  c108f4c0    00000060                       : cpu.obj (.text)
+                  c108f520    0000005c     rtsv5_A_le_eabi.lib : fd_toi32.obj (.text)
+                  c108f57c    00000048     platform.lib : syscfg.obj (.text)
+                  c108f5c4    00000048     rtsv5_A_le_eabi.lib : strncpy.obj (.text)
+                  c108f60c    0000003c                         : i_tofd32.obj (.text)
+                  c108f648    0000002c                         : memchr.obj (.text)
+                  c108f674    00000028                         : memccpy.obj (.text)
+                  c108f69c    00000028                         : strchr.obj (.text)
+                  c108f6c4    00000028                         : strcmp.obj (.text)
+                  c108f6ec    00000024                         : _lock.obj (.text)
+                  c108f710    00000020                         : copy_zero_init.obj (.text:decompress:ZI)
+                  c108f730    00000020                         : strlen.obj (.text)
+                  c108f750    0000001c                         : strcpy.obj (.text)
+                  c108f76c    00000014                         : copy_decompress_none.obj (.text:decompress:none)
+                  c108f780    00000014                         : xdclass.obj (.text)
+                  c108f794    0000000c     system_config.lib : cpu.obj (.text:CPUIntStatus)
+                  c108f7a0    00000008     rtsv5_A_le_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
+
+.sysmem    0    c108f7a8    00002000     UNINITIALIZED
+                  c108f7a8    00000008     rtsv5_A_le_eabi.lib : memory.obj (.sysmem)
+                  c108f7b0    00001ff8     --HOLE--
+
+.bss       0    c10917a8    00000494     UNINITIALIZED
+                  c10917a8    00000194     system_config.lib : interrupt.obj (.bss:fnRAMVectors)
+                  c109193c    00000120     rtsv5_A_le_eabi.lib : trgmsg.obj (.bss:__CIOBUF_)
+                  c1091a5c    00000100     ipclite.lib : notify.obj (.bss:esTbl)
+                  c1091b5c    000000a0     rtsv5_A_le_eabi.lib : defs.obj (.bss:__TI_tmpnams)
+                  c1091bfc    00000024     ipclite.lib : notify.obj (.bss:ntfyCfgObj)
+                  c1091c20    0000000c                 : ipc.obj (.bss)
+                  c1091c2c    00000008     (.common:parmbuf)
+                  c1091c34    00000004     (.common:evtRcvd)
+                  c1091c38    00000004     (.common:myPayload)
+
+.data      0    c1091c3c    000001f0     UNINITIALIZED
+                  c1091c3c    000000f0     rtsv5_A_le_eabi.lib : defs.obj (.data:_ftable)
+                  c1091d2c    000000d0                         : lowlev.obj (.data)
+                  c1091dfc    00000010                         : defs.obj (.data)
+                  c1091e0c    0000000c                         : memory.obj (.data)
+                  c1091e18    00000008                         : _lock.obj (.data)
+                  c1091e20    00000008                         : exit.obj (.data)
+                  c1091e28    00000004                         : fopen.obj (.data)
+
+.const     0    c1091e2c    00000150     
+                  c1091e2c    00000104     rtsv5_A_le_eabi.lib : ctype.obj (.const:.string:_ctypes_)
+                  c1091f30    00000038     system_config.lib : startup.obj (.const:vecTbl)
+                  c1091f68    00000014     main_arm.obj (.const)
+
+.cinit     0    c1091f80    000000c0     
+                  c1091f80    0000007c     (.cinit..data.load) [load image, compression = rle]
+                  c1091ffc    0000000c     (__TI_handler_table)
+                  c1092008    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  c1092010    00000008     (.cinit.ipc_arm.load) [load image, compression = zero_init]
+                  c1092018    00000008     (.cinit.ipc_dsp.load) [load image, compression = zero_init]
+                  c1092020    00000020     (__TI_cinit_table)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ c1092020 records: 4, size/record: 8, table size: 32
+	.data: load addr=c1091f80, load size=0000007c bytes, run addr=c1091c3c, run size=000001f0 bytes, compression=rle
+	.bss: load addr=c1092008, load size=00000008 bytes, run addr=c10917a8, run size=00000494 bytes, compression=zero_init
+	ipc_arm: load addr=c1092010, load size=00000008 bytes, run addr=80000000, run size=00000010 bytes, compression=zero_init
+	ipc_dsp: load addr=c1092018, load size=00000008 bytes, run addr=80000010, run size=00000010 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ c1091ffc records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+FAR CALL TRAMPOLINES
+
+callee name               trampoline name
+   callee addr  tramp addr   call addr  call info
+--------------  -----------  ---------  ----------------
+__TI_auto_init            $Tramp$AA$S$$__TI_auto_init
+   c108ebcc     c1080094     c108006c   system_config.lib : init.obj (.text)
+
+[1 trampolines]
+[1 trampoline calls]
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+c108f448   ADDR_HIPVR1
+c108f4a8   AbortHandler
+c108f090   C$$IO$$
+c108f4dc   CPUAbortHandler
+c108f794   CPUIntStatus
+c108f4c0   CPUSwitchToPrivilegedMode
+c108f4c8   CPUSwitchToUserMode
+c108a91c   CPU_PLL_PSC_DDR_Init
+c108f500   CPUfiqd
+c108f510   CPUfiqe
+c108f4e0   CPUirqd
+c108f4f0   CPUirqe
+c108a63c   Core_456MHz_DDR2_156MHz
+c108a3b4   DEVICE_DDRConfig
+c108acec   Delay
+c1080000   Entry
+c108f48c   FIQHandler
+c108bdd8   GPIOBankIntDisable
+c108bda8   GPIOBankIntEnable
+c108aca4   GPIOBankPinInit
+c108ac94   GPIOBankPinMuxSet
+c108be08   GPIOBankPinsWrite
+c108b8bc   GPIODirModeGet
+c108b80c   GPIODirModeSet
+c108bc0c   GPIOIntTypeGet
+c108ba68   GPIOIntTypeSet
+c108bd40   GPIOPinIntClear
+c108bcc0   GPIOPinIntStatus
+c108b9e8   GPIOPinRead
+c108b93c   GPIOPinWrite
+c108ce9c   HOSTclock
+c108ce34   HOSTclose
+c108cdcc   HOSTgetenv
+c108cd2c   HOSTlseek
+c108cca0   HOSTopen
+c108cc1c   HOSTread
+c108cb84   HOSTrename
+c108cb24   HOSTtime
+c108cac0   HOSTunlink
+c108ca3c   HOSTwrite
+c108ab64   IPCInit
+c108e1f8   IPC_init
+c108e2f0   IPC_intRegister
+c108f470   IRQHandler
+c108d198   IntAINTCInit
+c108cf88   IntChannelGet
+c108cf50   IntChannelSet
+c108d260   IntDisable
+c108d278   IntEnable
+c108d184   IntFIQDisable
+c108d170   IntFIQEnable
+c108cfc8   IntGlobalDisable
+c108cfb8   IntGlobalEnable
+c108d15c   IntIRQDisable
+c108d148   IntIRQEnable
+c108d248   IntMasterFIQDisable
+c108d23c   IntMasterFIQEnable
+c108d230   IntMasterIRQDisable
+c108d224   IntMasterIRQEnable
+c108d254   IntMasterStatusGet
+c108cf0c   IntRegister
+c108d028   IntSystemDisable
+c108cfdc   IntSystemEnable
+c108d070   IntSystemStatusClear
+c108d100   IntSystemStatusEnabledGet
+c108d0b8   IntSystemStatusRawGet
+c108cf30   IntUnRegister
+c108ae20   Notify_disable
+c108afec   Notify_disableEvent
+c108b038   Notify_enableEvent
+c108b084   Notify_registerEvent
+c108aec8   Notify_restore
+c108b2cc   Notify_sendEvent
+c108adc4   Notify_start
+c108b19c   Notify_unregisterEvent
+c108af74   Notify_waitEvent
+c1089ff8   PSC0_LPSC_SyncReset
+c108a1d4   PSC0_LPSC_enable
+c1089e30   PSC0_LPSC_enableCore
+c1089bc8   PSC1_LPSC_SyncReset
+c1089cfc   PSC1_LPSC_enable
+c1089b9c   PSC1_LPSC_force
+c108df50   PSCModuleControl
+c108a714   PSC_All_On
+UNDEFED    SHT$$INIT_ARRAY$$Base
+UNDEFED    SHT$$INIT_ARRAY$$Limit
+c108f450   SWIHandler
+c108a5d4   Set_Core_456MHz
+c108a62c   Set_DDR2_156MHz
+c108a608   Set_DDRPLL_156MHz
+c108f598   SysCfgRegistersLock
+c108f57c   SysCfgRegistersUnlock
+c108f4a8   UndefInstHandler
+c108a588   Wake_DSP
+c108a5c0   Wake_PRU
+c108f780   _Dclass
+c108f22c   _Dtest
+c109193c   __CIOBUF_
+c108809c   __STACK_END
+00008000   __STACK_SIZE
+00002000   __SYSMEM_SIZE
+c1092020   __TI_CINIT_Base
+c1092040   __TI_CINIT_Limit
+c1091ffc   __TI_Handler_Table_Base
+c1092008   __TI_Handler_Table_Limit
+00000001   __TI_args_main
+c108ebcc   __TI_auto_init
+c108d400   __TI_cleanup
+c1091e20   __TI_cleanup_ptr
+c108e9dc   __TI_closefile
+c108f76c   __TI_decompress_none
+c108f7a0   __TI_decompress_rle24
+c108e330   __TI_doflush
+c1091e24   __TI_dtors_ptr
+c1091dfc   __TI_ft_end
+c1089250   __TI_printfi
+c108e73c   __TI_rd_ok
+c108f098   __TI_readmsg
+c1091f80   __TI_static_base__
+c1091b5c   __TI_tmpnams
+c108f048   __TI_writemsg
+c108e69c   __TI_wrt_ok
+c108f710   __TI_zero_init
+c108eca0   __aeabi_cdcmpeq
+c108eca0   __aeabi_cdcmple
+c108ed70   __aeabi_cdrcmple
+c108f520   __aeabi_d2iz
+c108d864   __aeabi_dadd
+c108dc40   __aeabi_ddiv
+c108e45c   __aeabi_dmul
+c108d858   __aeabi_dsub
+c108f60c   __aeabi_i2d
+c108e7b4   __aeabi_idivmod
+c108ee40   __aeabi_memclr
+c108ee40   __aeabi_memclr4
+c108ee40   __aeabi_memclr8
+c108ddd0   __aeabi_memcpy
+c108ddd0   __aeabi_memcpy4
+c108ddd0   __aeabi_memcpy8
+c108ee44   __aeabi_memset
+c108ee44   __aeabi_memset4
+c108ee44   __aeabi_memset8
+c1091e08   __aeabi_stderr
+c1091e00   __aeabi_stdin
+c1091e04   __aeabi_stdout
+c108ead8   __aeabi_uidivmod
+c108d5a0   __aeabi_uldivmod
+ffffffff   __binit__
+ffffffff   __c_args__
+c108009c   __stack
+c1091e2c   _ctypes_
+c1091c3c   _ftable
+c1091e18   _lock
+c108f704   _nop
+c108f6f8   _register_lock
+c108f6ec   _register_unlock
+c108f7a8   _sys_memory
+c1091e1c   _unlock
+c108c914   add_device
+c108f2bc   atoi
+ffffffff   binit
+c1091c3c   bss_end
+c10917a8   bss_start
+c108c48c   calloc
+c108a934   cbFxnEvent
+c108c880   close
+c108f340   copy_in
+c1089760   device_PLL0
+c10899ac   device_PLL1
+c1091c34   evtRcvd
+c108ea88   fclose
+c108e3b4   fflush
+c108d498   fopen
+c108e8cc   fputc
+c108da6c   fputs
+c108c07c   free
+c108d44c   freopen
+c108efa0   fseek
+c108ac24   iAssert
+80000000   ipcPvMemArm
+80000010   ipcPvMemDsp
+c108e670   ipc_CheckIntStatus
+c108e680   ipc_CheckIpcIntStatus
+c108e604   ipc_ClearIpcInt
+c108b3e0   ipc_InitSyncRemote
+c108e5f0   ipc_NotifyIntDisable
+c108e5dc   ipc_NotifyIntEnable
+c108b614   ipc_NotifyIntInfo
+c108e584   ipc_NotifyIsr
+c108b4cc   ipc_NotifyIsrAckEvent
+c108b464   ipc_NotifySendInterrupt
+c108b630   ipc_NotifySetup
+c108b418   ipc_NotifySyncRemote
+c108e5b4   ipc_RegisterInt
+c108e63c   ipc_SetIpcInt
+c108b3c0   ipc_quickWait
+c108c83c   lseek
+c108f3c4   ltoa
+c108a98c   main
+c108bfc8   malloc
+c108c354   memalign
+c108f674   memccpy
+c108f648   memchr
+c108ddd0   memcpy
+c108ee50   memset
+c108bec8   minit
+c1091c38   myPayload
+c108c724   open
+c108f0f8   printf
+c108e9c4   putc
+c108e9c8   putchar
+c108dc08   puts
+c108c6e0   read
+c108c1d0   realloc
+c108c5e8   remove
+c108c694   remove_device
+c108c628   rename
+c108e0a4   setvbuf
+c108eef0   start_boot
+c108f69c   strchr
+c108f6c4   strcmp
+c108f750   strcpy
+c108f730   strlen
+c108f5c4   strncpy
+c108c5e8   unlink
+c108ac48   wait_event
+c108c4f0   write
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000001   __TI_args_main
+00002000   __SYSMEM_SIZE
+00008000   __STACK_SIZE
+80000000   ipcPvMemArm
+80000010   ipcPvMemDsp
+c1080000   Entry
+c108009c   __stack
+c108809c   __STACK_END
+c1089250   __TI_printfi
+c1089760   device_PLL0
+c10899ac   device_PLL1
+c1089b9c   PSC1_LPSC_force
+c1089bc8   PSC1_LPSC_SyncReset
+c1089cfc   PSC1_LPSC_enable
+c1089e30   PSC0_LPSC_enableCore
+c1089ff8   PSC0_LPSC_SyncReset
+c108a1d4   PSC0_LPSC_enable
+c108a3b4   DEVICE_DDRConfig
+c108a588   Wake_DSP
+c108a5c0   Wake_PRU
+c108a5d4   Set_Core_456MHz
+c108a608   Set_DDRPLL_156MHz
+c108a62c   Set_DDR2_156MHz
+c108a63c   Core_456MHz_DDR2_156MHz
+c108a714   PSC_All_On
+c108a91c   CPU_PLL_PSC_DDR_Init
+c108a934   cbFxnEvent
+c108a98c   main
+c108ab64   IPCInit
+c108ac24   iAssert
+c108ac48   wait_event
+c108ac94   GPIOBankPinMuxSet
+c108aca4   GPIOBankPinInit
+c108acec   Delay
+c108adc4   Notify_start
+c108ae20   Notify_disable
+c108aec8   Notify_restore
+c108af74   Notify_waitEvent
+c108afec   Notify_disableEvent
+c108b038   Notify_enableEvent
+c108b084   Notify_registerEvent
+c108b19c   Notify_unregisterEvent
+c108b2cc   Notify_sendEvent
+c108b3c0   ipc_quickWait
+c108b3e0   ipc_InitSyncRemote
+c108b418   ipc_NotifySyncRemote
+c108b464   ipc_NotifySendInterrupt
+c108b4cc   ipc_NotifyIsrAckEvent
+c108b614   ipc_NotifyIntInfo
+c108b630   ipc_NotifySetup
+c108b80c   GPIODirModeSet
+c108b8bc   GPIODirModeGet
+c108b93c   GPIOPinWrite
+c108b9e8   GPIOPinRead
+c108ba68   GPIOIntTypeSet
+c108bc0c   GPIOIntTypeGet
+c108bcc0   GPIOPinIntStatus
+c108bd40   GPIOPinIntClear
+c108bda8   GPIOBankIntEnable
+c108bdd8   GPIOBankIntDisable
+c108be08   GPIOBankPinsWrite
+c108bec8   minit
+c108bfc8   malloc
+c108c07c   free
+c108c1d0   realloc
+c108c354   memalign
+c108c48c   calloc
+c108c4f0   write
+c108c5e8   remove
+c108c5e8   unlink
+c108c628   rename
+c108c694   remove_device
+c108c6e0   read
+c108c724   open
+c108c83c   lseek
+c108c880   close
+c108c914   add_device
+c108ca3c   HOSTwrite
+c108cac0   HOSTunlink
+c108cb24   HOSTtime
+c108cb84   HOSTrename
+c108cc1c   HOSTread
+c108cca0   HOSTopen
+c108cd2c   HOSTlseek
+c108cdcc   HOSTgetenv
+c108ce34   HOSTclose
+c108ce9c   HOSTclock
+c108cf0c   IntRegister
+c108cf30   IntUnRegister
+c108cf50   IntChannelSet
+c108cf88   IntChannelGet
+c108cfb8   IntGlobalEnable
+c108cfc8   IntGlobalDisable
+c108cfdc   IntSystemEnable
+c108d028   IntSystemDisable
+c108d070   IntSystemStatusClear
+c108d0b8   IntSystemStatusRawGet
+c108d100   IntSystemStatusEnabledGet
+c108d148   IntIRQEnable
+c108d15c   IntIRQDisable
+c108d170   IntFIQEnable
+c108d184   IntFIQDisable
+c108d198   IntAINTCInit
+c108d224   IntMasterIRQEnable
+c108d230   IntMasterIRQDisable
+c108d23c   IntMasterFIQEnable
+c108d248   IntMasterFIQDisable
+c108d254   IntMasterStatusGet
+c108d260   IntDisable
+c108d278   IntEnable
+c108d400   __TI_cleanup
+c108d44c   freopen
+c108d498   fopen
+c108d5a0   __aeabi_uldivmod
+c108d858   __aeabi_dsub
+c108d864   __aeabi_dadd
+c108da6c   fputs
+c108dc08   puts
+c108dc40   __aeabi_ddiv
+c108ddd0   __aeabi_memcpy
+c108ddd0   __aeabi_memcpy4
+c108ddd0   __aeabi_memcpy8
+c108ddd0   memcpy
+c108df50   PSCModuleControl
+c108e0a4   setvbuf
+c108e1f8   IPC_init
+c108e2f0   IPC_intRegister
+c108e330   __TI_doflush
+c108e3b4   fflush
+c108e45c   __aeabi_dmul
+c108e584   ipc_NotifyIsr
+c108e5b4   ipc_RegisterInt
+c108e5dc   ipc_NotifyIntEnable
+c108e5f0   ipc_NotifyIntDisable
+c108e604   ipc_ClearIpcInt
+c108e63c   ipc_SetIpcInt
+c108e670   ipc_CheckIntStatus
+c108e680   ipc_CheckIpcIntStatus
+c108e69c   __TI_wrt_ok
+c108e73c   __TI_rd_ok
+c108e7b4   __aeabi_idivmod
+c108e8cc   fputc
+c108e9c4   putc
+c108e9c8   putchar
+c108e9dc   __TI_closefile
+c108ea88   fclose
+c108ead8   __aeabi_uidivmod
+c108ebcc   __TI_auto_init
+c108eca0   __aeabi_cdcmpeq
+c108eca0   __aeabi_cdcmple
+c108ed70   __aeabi_cdrcmple
+c108ee40   __aeabi_memclr
+c108ee40   __aeabi_memclr4
+c108ee40   __aeabi_memclr8
+c108ee44   __aeabi_memset
+c108ee44   __aeabi_memset4
+c108ee44   __aeabi_memset8
+c108ee50   memset
+c108eef0   start_boot
+c108efa0   fseek
+c108f048   __TI_writemsg
+c108f090   C$$IO$$
+c108f098   __TI_readmsg
+c108f0f8   printf
+c108f22c   _Dtest
+c108f2bc   atoi
+c108f340   copy_in
+c108f3c4   ltoa
+c108f448   ADDR_HIPVR1
+c108f450   SWIHandler
+c108f470   IRQHandler
+c108f48c   FIQHandler
+c108f4a8   AbortHandler
+c108f4a8   UndefInstHandler
+c108f4c0   CPUSwitchToPrivilegedMode
+c108f4c8   CPUSwitchToUserMode
+c108f4dc   CPUAbortHandler
+c108f4e0   CPUirqd
+c108f4f0   CPUirqe
+c108f500   CPUfiqd
+c108f510   CPUfiqe
+c108f520   __aeabi_d2iz
+c108f57c   SysCfgRegistersUnlock
+c108f598   SysCfgRegistersLock
+c108f5c4   strncpy
+c108f60c   __aeabi_i2d
+c108f648   memchr
+c108f674   memccpy
+c108f69c   strchr
+c108f6c4   strcmp
+c108f6ec   _register_unlock
+c108f6f8   _register_lock
+c108f704   _nop
+c108f710   __TI_zero_init
+c108f730   strlen
+c108f750   strcpy
+c108f76c   __TI_decompress_none
+c108f780   _Dclass
+c108f794   CPUIntStatus
+c108f7a0   __TI_decompress_rle24
+c108f7a8   _sys_memory
+c10917a8   bss_start
+c109193c   __CIOBUF_
+c1091b5c   __TI_tmpnams
+c1091c34   evtRcvd
+c1091c38   myPayload
+c1091c3c   _ftable
+c1091c3c   bss_end
+c1091dfc   __TI_ft_end
+c1091e00   __aeabi_stdin
+c1091e04   __aeabi_stdout
+c1091e08   __aeabi_stderr
+c1091e18   _lock
+c1091e1c   _unlock
+c1091e20   __TI_cleanup_ptr
+c1091e24   __TI_dtors_ptr
+c1091e2c   _ctypes_
+c1091f80   __TI_static_base__
+c1091ffc   __TI_Handler_Table_Base
+c1092008   __TI_Handler_Table_Limit
+c1092020   __TI_CINIT_Base
+c1092040   __TI_CINIT_Limit
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    SHT$$INIT_ARRAY$$Base
+UNDEFED    SHT$$INIT_ARRAY$$Limit
+
+[227 symbols]
